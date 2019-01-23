@@ -1,0 +1,178 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "",
+        "title": "whereis",
+        "description": ""
+    },
+    "host": "",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/whereis/me": {
+            "post": {
+                "operationId": "PUT-whereis",
+                "summary": "Update My Info",
+                "tags": [
+                    "Whereis"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "location": {
+                                    "type": "string"
+                                },
+                                "timezone": {
+                                    "type": "string"
+                                },
+                                "info": {
+                                    "type": "string"
+                                },
+                                "token": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "location": "London",
+                                "timezone": "GMT",
+                                "info": "usual mobile number"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "message": "ok"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/whereis/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET-whereis",
+                "summary": "Get Info For A Specific User",
+                "tags": [
+                    "Whereis"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "location": {
+                                    "type": "string"
+                                },
+                                "timezone": {
+                                    "type": "string"
+                                },
+                                "info": {
+                                    "type": "string"
+                                },
+                                "last_updated": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "location": "London",
+                                "timezone": "GMT",
+                                "info": "usual mobile number",
+                                "last_updated": "1548137401"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/whereis/everybody": {
+            "get": {
+                "operationId": "LIST-whereis",
+                "summary": "Get All Users With Info",
+                "tags": [
+                    "Whereis"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "list": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "location": {
+                                                "type": "string"
+                                            },
+                                            "timezone": {
+                                                "type": "string"
+                                            },
+                                            "info": {
+                                                "type": "string"
+                                            },
+                                            "last_updated": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "list": [
+                                    {
+                                        "id": "joe",
+                                        "location": "London",
+                                        "timezone": "GMT",
+                                        "info": "usual mobile number",
+                                        "last_updated": "1548137401"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
